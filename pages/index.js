@@ -3,9 +3,9 @@ import MoodButtons from "../components/MoodButtons";
 import GenreButtons from "../components/GenreButtons";
 import PlotSearch from "../components/PlotSearch";
 import PersonSearch from "../components/PersonSearch";
+import MovieLink from "../components/MovieLink";
 import { useState } from "react";
 import axios from "axios";
-import Link from "next/link";
 
 export default function Home() {
   const [genre, setGenre] = useState("Action");
@@ -69,63 +69,46 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-2 md:p-12 lg:p-24 bg-gray-100">
-      <div className="z-10 w-full p-8 rounded-lg shadow-lg bg-white items-center justify-between font-mono text-sm lg:flex">
-        <form className="flex flex-col space-y-4 w-full">
-          <GenreButtons genre={genre} setGenre={setGenre} />
+    <>
+      <Head>
+        <title>🎥 Meta-Movie Search</title>
+      </Head>
+      <main className="flex min-h-screen flex-col items-center justify-between p-2 md:p-12 lg:p-24 bg-gray-100">
+        <div className="z-10 w-full p-8 rounded-lg shadow-lg bg-white items-center justify-between font-mono text-sm lg:flex">
+          <form className="flex flex-col space-y-4 w-full">
+            <GenreButtons genre={genre} setGenre={setGenre} />
 
-          <PlotSearch plot={plot} setPlot={setPlot} />
+            <PlotSearch plot={plot} setPlot={setPlot} />
 
-          <MoodButtons mood={mood} setMood={setMood} />
+            <MoodButtons mood={mood} setMood={setMood} />
 
-          <PersonSearch
-            isActor={isActor}
-            setIsActor={setIsActor}
-            person={person}
-            setPerson={setPerson}
-          />
+            <PersonSearch
+              isActor={isActor}
+              setIsActor={setIsActor}
+              person={person}
+              setPerson={setPerson}
+            />
 
-          <div className="flex justify-center">
-            <button
-              className="border-2 border-green-500 rounded-full py-2 px-8 hover:bg-green-500 hover:text-white"
-              onClick={handleSearch}
-            >
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
-      <div className="w-full p-8 rounded-lg shadow-lg bg-white mt-8">
-        {contentData.length > 0 ? (
-          contentData.map((content, index) => (
-            <Link  href={content.url} target="_blank">
-            <div key={index} className="mb-4 p-4 border rounded">
-              <h2 className="text-lg font-bold flex items-center">
-                
-                  {content.title.split(" - ")[0]}
-                
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </h2>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <p>Search for something.</p>
-        )}
-      </div>
-    </main>
+            <div className="flex justify-center">
+              <button
+                className="border-2 border-green-500 rounded-full py-2 px-8 hover:bg-green-500 hover:text-white"
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="w-full p-8 rounded-lg shadow-lg bg-white mt-8">
+          {contentData.length > 0 ? (
+            contentData.map((content, index) => (
+              <MovieLink key={index} content={content} index={index} />
+            ))
+          ) : (
+            <p>Search for something.</p>
+          )}
+        </div>
+      </main>
+    </>
   );
 }
