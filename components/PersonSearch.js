@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function SearchDropdown({ searchType, setSearchType }) {
   return (
@@ -13,23 +13,32 @@ function SearchDropdown({ searchType, setSearchType }) {
   );
 }
 
-export default function PersonSearch({ isActor, setIsActor, person, setPerson }) {
-  const [searchType, setSearchType] = useState('Director');
+export default function PersonSearch({
+  isActor,
+  setIsActor,
+  person,
+  setPerson,
+}) {
+  const [searchType, setSearchType] = useState("Director");
 
   useEffect(() => {
-    setIsActor(searchType === 'Actor');
+    setIsActor(searchType === "Actor");
   }, [searchType]);
 
   return (
-    <div className="flex items-center space-x-2">
-      <SearchDropdown searchType={searchType} setSearchType={setSearchType} />
-      <input
-        type="text"
-        className="flex-grow border rounded p-2"
-        placeholder={`Search for ${searchType}`}
-        value={person}
-        onChange={(e) => setPerson(e.target.value)}
-      />
-    </div>
+    <>
+      <br />
+      <label>I'd like to see the work of... (optional)</label>
+      <div className="flex items-center space-x-2">
+        <SearchDropdown searchType={searchType} setSearchType={setSearchType} />
+        <input
+          type="text"
+          className="flex-grow border rounded p-2"
+          placeholder={`Search for ${searchType}`}
+          value={person}
+          onChange={(e) => setPerson(e.target.value)}
+        />
+      </div>
+    </>
   );
 }

@@ -9,6 +9,9 @@ export default function MoodButtons({ mood, setMood }) {
   ];
 
   return (
+    <>
+    <br />
+    <label>I'm feeling...</label>
     <div className="flex flex-wrap gap-2">
       {moods.map((m) => (
         <button
@@ -21,5 +24,6 @@ export default function MoodButtons({ mood, setMood }) {
         </button>
       ))}
     </div>
+    </>
   );
 }

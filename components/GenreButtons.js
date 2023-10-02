@@ -2,6 +2,8 @@ export default function GenreButtons({ genre, setGenre }) {
   const genres = ["Action", "Comedy", "Drama", "Romance"];
 
   return (
+    <>
+    <label>I want to watch a...</label>
     <div className="flex flex-wrap gap-2">
       {genres.map((g) => (
         <button
@@ -14,5 +16,6 @@ export default function GenreButtons({ genre, setGenre }) {
         </button>
       ))}
     </div>
+    </>
   );
 }
