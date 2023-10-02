@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+import MoodButtons from "../components/MoodButtons";
 import GenreButtons from "../components/GenreButtons";
 import PlotSearch from "../components/PlotSearch";
 import PersonSearch from "../components/PersonSearch";
@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function Home() {
   const [genre, setGenre] = useState("Action");
+  const [mood, setMood] = useState('happy');
   const [isActor, setIsActor] = useState(true); // [actor, director]
   const [person, setPerson] = useState("");
   const [plot, setPlot] = useState("");
@@ -19,7 +20,7 @@ export default function Home() {
 
     const query = `A ${genre} movie where ${plot} and ${
       isActor ? "stars" : "is directed by"
-    } ${person}`;
+    } ${person} for when you're feeling ${mood}.`;
     console.log("Query:", query);
 
     try {
@@ -76,6 +77,9 @@ export default function Home() {
 
           <PlotSearch plot={plot} setPlot={setPlot} />
 
+          <MoodButtons mood={mood} setMood={setMood} />
+
+
           <div className="flex justify-center">
             <button
               className="bg-green-500 text-white rounded-full py-2 px-8 hover:bg-green-600"
@@ -95,10 +99,6 @@ export default function Home() {
                 {content.title}
               </a>
             </h2>
-            <div
-              className="text-sm"
-              dangerouslySetInnerHTML={{ __html: content.extract }}
-            />
           </div>
         ))
       ) : (

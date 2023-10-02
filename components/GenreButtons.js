@@ -7,7 +7,7 @@ export default function GenreButtons({ genre, setGenre }) {
         <button
           type="button"
           key={g}
-          className={`text-white rounded-full py-2 px-4 ${g === genre ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-600"}`}
+          className={`rounded-xl py-2 px-4 border-indigo-600 border-2  ${g === genre ? "bg-blue-300" : ""}`}
           onClick={() => setGenre(g)}
         >
           {g}
