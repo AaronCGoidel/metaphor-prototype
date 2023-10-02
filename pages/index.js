@@ -34,31 +34,24 @@ export default function Home() {
         useAutoprompt: true,
       };
 
-      const metaphorApiUrl = "https://api.metaphor.systems/search";
-
-      const response = await axios.post(metaphorApiUrl, requestData, {
+      const response = await axios.post("/api/search", requestData, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "X-API-KEY": process.env.NEXT_PUBLIC_METAPHOR_API_KEY,
         },
       });
 
       const documentIds = response.data.results.map((item) => item.id);
       console.log(documentIds);
 
-      const contentResponse = await axios.get(
-        "https://api.metaphor.systems/contents",
-        {
-          params: {
-            ids: documentIds,
-          },
-          headers: {
-            Accept: "application/json",
-            "X-API-KEY": process.env.NEXT_PUBLIC_METAPHOR_API_KEY,
-          },
-        }
-      );
+      const contentResponse = await axios.get("/api/getContents", {
+        params: {
+          ids: documentIds,
+        },
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
       const contentData = contentResponse.data;
 
