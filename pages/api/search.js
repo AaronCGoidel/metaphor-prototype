@@ -3,6 +3,8 @@ import axios from 'axios';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
+      console.log('searching')
+      console.log(process.env.METAPHOR_API_KEY)
       const response = await axios.post(
         'https://api.metaphor.systems/search',
         req.body,
@@ -10,7 +12,7 @@ export default async function handler(req, res) {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'X-API-KEY': process.env.NEXT_PUBLIC_METAPHOR_API_KEY
+            'X-API-KEY': process.env.METAPHOR_API_KEY
           }
         }
       );
