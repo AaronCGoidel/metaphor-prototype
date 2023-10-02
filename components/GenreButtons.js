@@ -5,8 +5,9 @@ export default function GenreButtons({ genre, setGenre }) {
     <div className="flex flex-wrap gap-2">
       {genres.map((g) => (
         <button
+          type="button"
           key={g}
-          className={`text-white rounded-full py-2 px-4 ${g === genre ? "bg-blue-600" : "bg-blue-500 hover:bg-blue-600"}`}
+          className={`text-white rounded-full py-2 px-4 ${g === genre ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-600"}`}
           onClick={() => setGenre(g)}
         >
           {g}
