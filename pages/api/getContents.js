@@ -9,7 +9,7 @@ export default async function handler(req, res) {
           params: req.query,
           headers: {
             Accept: 'application/json',
-            'X-API-KEY': process.env.METAPHOR_API_KEY
+            'X-API-KEY': process.env.NEXT_PUBLIC_METAPHOR_API_KEY
           }
         }
       );
