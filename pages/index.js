@@ -6,6 +6,7 @@ import PersonSearch from "../components/PersonSearch";
 import MovieLink from "../components/MovieLink";
 import { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Home() {
   const [genre, setGenre] = useState("Action");
@@ -100,6 +101,14 @@ export default function Home() {
           ) : (
             <p>Search for something.</p>
           )}
+        </div>
+        <div className="flex justify-center items-center text-gray-500 text-xs mt-8">
+          <p>
+            Made by{" "}
+            <Link href="https://aarongoidel.com">
+              <span className="underline hover:text-gray-700">Aaron Goidel</span>
+            </Link>
+          </p>
         </div>
       </main>
     </>
